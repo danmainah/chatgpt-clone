@@ -1,8 +1,11 @@
+import Followups from "./section-views/followups";
+import Prompts from "./section-views/prompts";
 
 export default function Home() {
   return (
     <div>
-      <h2>This is A ChatGPT Clone</h2>
+       <Prompts />
+       <Followups />
     </div>
   );
 }
