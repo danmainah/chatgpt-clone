@@ -1,33 +1,32 @@
+import { useState } from "react";
+import { addPrompt } from "../actions/prompts";
+
 export default function AddPrompts() {
+    const [prompt, setPrompt] = useState('')
+
+    const handleSubmit = async (event: React.FormEvent) {
+        event.preventDefault()
+        addPrompt(prompt)
+        setPrompt('')
+    }
     return (
-        <form action="" method="post">
-            <div>
-                <label htmlFor="prompt">Prompt</label>
-                <br />
-                <input
-                    type="text"
-                    name="prompt"
-                    id="prompt"
-                    placeholder="Enter prompt"
-                />
-            </div>
-            {/* add button with submit icon */}
-            <button type="submit">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
-                    />
-                </svg>
-            </button>
-        </form>
+        <div className="mb-4">
+        <label htmlFor="prompt" className="block text-gray-700 font-bold mb-2">
+          Enter Prompt:
+        </label>
+        <textarea
+          id="prompt"
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          rows={5}
+        />
+        <button
+          onClick={handleSubmit}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2"
+        >
+          Add Prompt
+        </button>
+      </div>
     );
 }

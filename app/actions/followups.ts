@@ -1,6 +1,6 @@
 import { supabase } from "@/utils/supabase/server";
 
-export  async function getFollowups (){
+export  async function getFollowups (id: number){
     const {data, error} = await supabase.from('followups').select("*");
     if(error){
         return error
@@ -14,5 +14,15 @@ export  async function addFollowups (id: number, followups: string){
     if(error){
         return error
     }
+    return data
+}
+
+export async function viewFollowups (id: number){
+    const {data, error} = await supabase.from("followups").select("*").eq("prompt_id",id);
+
+    if(error){
+        return error
+    }
+
     return data
 }
